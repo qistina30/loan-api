@@ -71,11 +71,21 @@ php artisan serve
 
 ### 1. Create Loan
 
-```bash
+**PowerShell (Windows):**
+
+```powershell
 Invoke-WebRequest "http://127.0.0.1:8000/api/loans" `
   -Method POST `
   -ContentType "application/json" `
   -Body '{"borrower_name":"Alice","principal_cents":"1000000"}'
+```
+
+**curl (macOS or Windows with curl.exe):**
+
+```bash
+curl -X POST http://127.0.0.1:8000/api/loans \
+  -H "Content-Type: application/json" \
+  -d '{"borrower_name":"Alice","principal_cents":"1000000"}'
 ```
 
 **Response:**
@@ -84,10 +94,10 @@ Invoke-WebRequest "http://127.0.0.1:8000/api/loans" `
 {
   "id": 1,
   "borrower_name": "Alice",
-  "principal_cents": 1000000,
+  "principal_cents": "1000000",
   "summary": {
-    "total_paid_cents": 0,
-    "outstanding_principal_cents": 1000000
+    "total_paid_cents": "0",
+    "outstanding_principal_cents": "1000000"
   }
 }
 ```
@@ -96,11 +106,21 @@ Invoke-WebRequest "http://127.0.0.1:8000/api/loans" `
 
 ### 2. Add Repayment
 
-```bash
+**PowerShell (Windows):**
+
+```powershell
 Invoke-WebRequest "http://127.0.0.1:8000/api/loans/1/repayments" `
   -Method POST `
   -ContentType "application/json" `
   -Body '{"amount_cents":"500000","paid_at":"2024-09-01"}'
+```
+
+**curl (macOS or Windows with curl.exe):**
+
+```bash
+curl -X POST http://127.0.0.1:8000/api/loans/1/repayments \
+  -H "Content-Type: application/json" \
+  -d '{"amount_cents":"500000","paid_at":"2024-09-01"}'
 ```
 
 **Response:**
@@ -109,7 +129,7 @@ Invoke-WebRequest "http://127.0.0.1:8000/api/loans/1/repayments" `
 {
   "id": 1,
   "loan_id": 1,
-  "amount_cents": 500000,
+  "amount_cents": "500000",
   "paid_at": "2024-09-01"
 }
 ```
@@ -118,9 +138,17 @@ Invoke-WebRequest "http://127.0.0.1:8000/api/loans/1/repayments" `
 
 ### 3. Get Loan Summary
 
-```bash
+**PowerShell (Windows):**
+
+```powershell
 Invoke-WebRequest "http://127.0.0.1:8000/api/loans/1" `
   -Method GET
+```
+
+**curl (macOS or Windows with curl.exe):**
+
+```bash
+curl http://127.0.0.1:8000/api/loans/1
 ```
 
 **Response:**
@@ -129,18 +157,23 @@ Invoke-WebRequest "http://127.0.0.1:8000/api/loans/1" `
 {
   "id": 1,
   "borrower_name": "Alice",
-  "principal_cents": 1000000,
+  "principal_cents": "1000000",
   "summary": {
-    "total_paid_cents": 500000,
-    "outstanding_principal_cents": 500000
+    "total_paid_cents": "500000",
+    "outstanding_principal_cents": "500000"
   }
 }
 ```
 
 ---
-💡 Tip: If you want to see only the JSON response without extra metadata:
 
+💡 **Tip (PowerShell only):** To see **just the JSON response**:
+
+```powershell
 (Invoke-WebRequest "http://127.0.0.1:8000/api/loans/1" -Method GET).Content
+```
+
+---
 
 ## ✅ Tests
 
