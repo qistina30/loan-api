@@ -196,6 +196,11 @@ php artisan test --filter=LoanSummaryServiceTest
 ```
 
 ---
+## ✅ Tests
+
+All tests are passing:
+
+![All tests passed](screenshots/test-passed.png)
 
 ## 📂 Project Structure
 
