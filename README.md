@@ -198,9 +198,9 @@ php artisan test --filter=LoanSummaryServiceTest
 ---
 ## ✅ Tests
 
-All tests are passing:
+All tests have been implemented and are passing successfully.
 
-![All tests passed](screenshots/test-passed.png)
+![Tests Passed](docs/tests-passed.png)
 
 ## 📂 Project Structure
 
